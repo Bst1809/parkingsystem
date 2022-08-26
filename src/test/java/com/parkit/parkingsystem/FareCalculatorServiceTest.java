@@ -145,4 +145,21 @@ public class FareCalculatorServiceTest {
 		assertEquals((24 * Fare.CAR_RATE_PER_HOUR), ticket.getPrice());
 	}
 
+	@Test
+	public void calculateFareCarForRecurringUsers() {
+		Date inTime = new Date();
+		inTime.setTime(System.currentTimeMillis() - (60 * 60 * 1000));
+		Date outTime = new Date();
+		ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR, false);
+		RecurringUser recurringUser = new RecurringUser();
+
+		ticket.setInTime(inTime);
+		ticket.setOutTime(outTime);
+		ticket.setParkingSpot(parkingSpot);
+		ticket.setRecurringUser(true);
+		fareCalculatorService.calculateFare(ticket);
+		assertEquals(ticket.getPrice(), (Fare.CAR_RATE_PER_HOUR * 0.95));
+
+	}
+
 }

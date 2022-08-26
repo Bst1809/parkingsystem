@@ -89,7 +89,7 @@ public class TicketDAO {
 		return false;
 	}
 
-	public int getRegCount(String vehicleRegNumber) {
+	public int getRegCount(String vehicleRegNumber) { // Get the number of times a vehicle registered in the past
 		Connection con = null;
 		int regCount = 0;
 		try {

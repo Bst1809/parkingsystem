@@ -18,22 +18,27 @@ public class FareCalculatorService {
 
 		// TODO: Some tests are failing here. Need to check if this logic is correct
 		long duration = outHour - inHour;
-		double durationMinut = duration / 1000 / 60;
-		double durationHour = durationMinut / 60;
+		double durationMinute = duration / 1000 / 60;
+		double durationHour = durationMinute / 60;
 		// FIRST 30 Minutes for free
-		if (durationMinut <= 30) {
+		if (durationMinute <= 30) {
 			ticket.setPrice(0);
 		} else {
 			switch (ticket.getParkingSpot().getParkingType()) {
-			// case CAR: {
-			// ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);
 			case CAR: {
-				ticket.setPrice(durationHour * Fare.CAR_RATE_PER_HOUR);
+				if (ticket.getRegCount() > 0) {
+					ticket.setPrice(durationHour * Fare.CAR_RATE_PER_HOUR * 0.95);
+				} else {
+					ticket.setPrice(durationHour * Fare.CAR_RATE_PER_HOUR);
+				}
 				break;
 			}
 			case BIKE: {
-				// ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR);
-				ticket.setPrice(durationHour * Fare.BIKE_RATE_PER_HOUR);
+				if (ticket.getRegCount() > 0) {
+					ticket.setPrice(durationHour * Fare.BIKE_RATE_PER_HOUR * 0.95);
+				} else {
+					ticket.setPrice(durationHour * Fare.BIKE_RATE_PER_HOUR);
+				}
 				break;
 			}
 			default:

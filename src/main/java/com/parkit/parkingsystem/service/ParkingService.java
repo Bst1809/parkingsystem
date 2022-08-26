@@ -33,6 +33,8 @@ public class ParkingService {
 			ParkingSpot parkingSpot = getNextParkingNumberIfAvailable();
 			if (parkingSpot != null && parkingSpot.getId() > 0) {
 				String vehicleRegNumber = getVehichleRegNumber();
+				// Counts how many time the RegNumber registered in the DataBase
+				ticketDAO.getRegCount(vehicleRegNumber);
 				parkingSpot.setAvailable(false);
 				parkingSpotDAO.updateParking(parkingSpot);// allot this parking space and mark it's availability as
 															// false

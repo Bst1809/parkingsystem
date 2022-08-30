@@ -99,6 +99,7 @@ public class TicketDAO {
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			regCount = rs.getInt(1);
+			System.out.println("Number of regs counted");
 			if (regCount > 0) {
 				System.out.println(
 						"Welcome back! As a recurring user of our parking lot, you'll benefit from a 5% discount.");
@@ -106,7 +107,7 @@ public class TicketDAO {
 			dataBaseConfig.closeResultSet(rs);
 			dataBaseConfig.closePreparedStatement(ps);
 		} catch (Exception ex) {
-			logger.error("Error fetching next available slot", ex);
+			logger.error("Error counting number of past registrations", ex);
 		} finally {
 			dataBaseConfig.closeConnection(con);
 		}

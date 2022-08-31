@@ -99,7 +99,6 @@ public class TicketDAO {
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			regCount = rs.getInt(1);
-			System.out.println("Number of regs counted");
 			if (regCount > 0) {
 				System.out.println(
 						"Welcome back! As a recurring user of our parking lot, you'll benefit from a 5% discount.");

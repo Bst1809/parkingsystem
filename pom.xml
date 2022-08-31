@@ -13,7 +13,6 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-
     <dependencies>
 		<dependency>
 		    <groupId>org.assertj</groupId>
@@ -55,12 +54,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.5</version>
-            <type>maven-plugin</type>
-        </dependency>
-        <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
             <version>3.0.0</version>
@@ -69,6 +62,19 @@
 
     <build>
         <plugins>
+        	<plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>4.7.1</version>
+	                <dependencies>
+					    <!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
+					    <dependency>
+					      <groupId>com.github.spotbugs</groupId>
+					      <artifactId>spotbugs</artifactId>
+					      <version>4.7.1</version>
+					    </dependency>
+					  </dependencies>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -130,7 +136,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.5</version>
+                <version>0.8.8</version>
                 <executions>
                     <execution>
                         <goals>
@@ -148,5 +154,18 @@
             </plugin>
         </plugins>
     </build>
-
+       <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.21.0</version>
+            </plugin>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>4.7.1</version>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>

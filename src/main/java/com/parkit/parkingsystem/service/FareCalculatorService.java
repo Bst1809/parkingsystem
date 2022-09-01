@@ -24,21 +24,18 @@ public class FareCalculatorService {
 		if (durationMinute <= 30) {
 			ticket.setPrice(0);
 		} else {
+			int regCount = ticket.getRegCount();
 			switch (ticket.getParkingSpot().getParkingType()) {
 			case CAR: {
-				if (ticket.getRegCount() > 1) {
-					ticket.setPrice(durationHour * Fare.CAR_RATE_PER_HOUR * 0.95);
-				} else {
-					ticket.setPrice(durationHour * Fare.CAR_RATE_PER_HOUR);
-				}
+				double priceCar = regCount > 1 ? durationHour * Fare.CAR_RATE_PER_HOUR * 0.95
+						: durationHour * Fare.CAR_RATE_PER_HOUR;
+				ticket.setPrice(priceCar);
 				break;
 			}
 			case BIKE: {
-				if (ticket.getRegCount() > 1) {
-					ticket.setPrice(durationHour * Fare.BIKE_RATE_PER_HOUR * 0.95);
-				} else {
-					ticket.setPrice(durationHour * Fare.BIKE_RATE_PER_HOUR);
-				}
+				double priceBike = regCount > 1 ? durationHour * Fare.BIKE_RATE_PER_HOUR * 0.95
+						: durationHour * Fare.BIKE_RATE_PER_HOUR;
+				ticket.setPrice(priceBike);
 				break;
 			}
 			default:

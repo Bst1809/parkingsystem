@@ -11,6 +11,14 @@ public class Ticket {
 	private Date outTime;
 	private int regCount;
 
+	public int getRegCount() {
+		return regCount;
+	}
+
+	public void setRegCount(int regCount) {
+		this.regCount = regCount;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -57,14 +65,6 @@ public class Ticket {
 
 	public void setOutTime(Date outTime) {
 		this.outTime = outTime;
-	}
-
-	public int getRegCount() {
-		return regCount;
-	}
-
-	public void setRegCount(int regCount) {
-		this.regCount = regCount;
 	}
 
 }

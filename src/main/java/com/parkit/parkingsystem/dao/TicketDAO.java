@@ -100,8 +100,10 @@ public class TicketDAO {
 			rs.next();
 			regCount = rs.getInt(1);
 			if (regCount > 0) {
-				System.out.println(
-						"Welcome back! As a recurring user of our parking lot, you'll benefit from a 5% discount.");
+				logger.info("Welcome back! As a recurring user of our parking lot, you'll benefit from a 5% discount.");
+				// System.out.println(
+				// "Welcome back! As a recurring user of our parking lot, you'll benefit from a
+				// 5% discount.");
 			}
 			dataBaseConfig.closeResultSet(rs);
 			dataBaseConfig.closePreparedStatement(ps);

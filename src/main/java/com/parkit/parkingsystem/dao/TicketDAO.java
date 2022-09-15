@@ -99,12 +99,13 @@ public class TicketDAO {
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			regCount = rs.getInt(1);
-			// if (regCount > 0) {
+			// if (regCount > 1) {
 			// logger.info("Welcome back! As a recurring user of our parking lot, you'll
 			// benefit from a 5% discount.");
+			// }
 			// System.out.println(
 			// "Welcome back! As a recurring user of our parking lot, you'll benefit from a
-			// 5% discount."); }
+			// 5% discount.");
 
 			dataBaseConfig.closeResultSet(rs);
 			dataBaseConfig.closePreparedStatement(ps);

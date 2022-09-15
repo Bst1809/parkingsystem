@@ -31,10 +31,15 @@ public class ParkingService {
 	public void processIncomingVehicle() {
 		try {
 			ParkingSpot parkingSpot = getNextParkingNumberIfAvailable();
+			int regCount = 0;
 			if (parkingSpot != null && parkingSpot.getId() > 0) {
 				String vehicleRegNumber = getVehichleRegNumber();
 				ticketDAO.getRegCount(vehicleRegNumber); // Counts how many time the RegNumber registered in the
 															// DataBase
+				if (regCount > 0) {
+					logger.info(
+							"Welcome back! As a recurring user of our parking lot, you'll benefit from a 5% discount.");
+				}
 				parkingSpot.setAvailable(false);
 				parkingSpotDAO.updateParking(parkingSpot);// allot this parking space and mark it's availability as
 															// false
